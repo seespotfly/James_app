@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   sender = params[:From]
   friends = {
     "+17046047104" => "Adam Hill",
+    "+17046040698" => "Katy Hill",
 #    "+14158157775" => "Boots",
 #    "+14155551234" => "Virgil"
   }
