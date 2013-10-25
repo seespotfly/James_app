@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @parking_code.code %>
+</p>
+
+<p>
+  <strong>Codedate:</strong>
+  <%= @parking_code.codedate %>
+</p>
+
+<%= link_to 'Edit', edit_parking_code_path(@parking_code) %> |
+<%= link_to 'Back', parking_codes_path %>

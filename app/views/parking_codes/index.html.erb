@@ -1,0 +1,29 @@
+<h1>Listing parking_codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Codedate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parking_codes.each do |parking_code| %>
+      <tr>
+        <td><%= parking_code.code %></td>
+        <td><%= parking_code.codedate %></td>
+        <td><%= link_to 'Show', parking_code %></td>
+        <td><%= link_to 'Edit', edit_parking_code_path(parking_code) %></td>
+        <td><%= link_to 'Destroy', parking_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parking code', new_parking_code_path %>

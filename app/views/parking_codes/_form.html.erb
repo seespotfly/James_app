@@ -1,0 +1,25 @@
+<%= form_for(@parking_code) do |f| %>
+  <% if @parking_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parking_code.errors.count, "error") %> prohibited this parking_code from being saved:</h2>
+
+      <ul>
+      <% @parking_code.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.number_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :codedate %><br>
+    <%= f.date_select :codedate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
