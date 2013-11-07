@@ -9,7 +9,7 @@ from = "+14159998888" # Your Twilio number
 #from = "+19802482173" # Your Twilio number
  
 friends = {
-"+14153334444" => "Curious George",
+"+17046047104" => "Curious George",
 "+14155557775" => "Boots",
 "+14155551234" => "Virgil"
 }
