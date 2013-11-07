@@ -6,7 +6,7 @@ class ParkingCode < ActiveRecord::Base
   validates :codedate, uniqueness: true
 
   def self.message_for(date)
-    pc = ParkingCode.where(codedate: Date.today) 
+    pc = ParkingCode.where(codedate: Date.today).first
     if pc.nil?
       "I don't have today's parking code."
     else
