@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
     :message => "must start with 1 followed by area code then number"
   validates :relationship, presence: true
 
+#all my validations are happy!
 end
