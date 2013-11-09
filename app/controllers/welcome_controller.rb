@@ -7,6 +7,9 @@ class WelcomeController < ApplicationController
 #    "+14158157775" => "Boots",
 #    "+14155551234" => "Virgil"
     } 
+#evaluate the content of the incoming text for a date
+#    message = params[:body]
+
     name = friends[sender] || "Mobile Monkey"
     twiml = Twilio::TwiML::Response.new do |r|
       r.Message ParkingCode.message_for(Date.today) 

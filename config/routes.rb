@@ -1,4 +1,6 @@
 JamesApp::Application.routes.draw do
+  resources :users
+
   resources :parking_codes
 
   get "welcome/index"
