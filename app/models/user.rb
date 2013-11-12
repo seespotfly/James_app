@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
 #all my validations are happy!
 
   def self.find_sender(phone_number)
-    # phone_number is something like "+17046047104"
-    User.where(phone_number: phone_number).first
+    User.where(phone_number: "+"+phone_number).first
   end
 end
 

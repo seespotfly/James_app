@@ -5,8 +5,7 @@ class WelcomeController < ApplicationController
     user = User.find_sender(sender)
 
     if user.nil?
-      #render :text => sms_message("You are not registered to request parking codes.")
-      render :text => sms_message(sender)
+      render :text => sms_message("You are not registered to request parking codes.")
 
     else
       render :text => sms_message(ParkingCode.message_for(Date.today))
