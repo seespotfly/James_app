@@ -11,4 +11,17 @@ class User < ActiveRecord::Base
   validates :relationship, presence: true
 
 #all my validations are happy!
+
+  def self.find_sender(phone_number)
+    # phone_number is something like "+17046047104"
+    User.where(phone_number: phone_number).first
+  end
 end
+
+
+        #friends = {
+      #{}"+17046047104" => "Adam Hill",
+      #{}"+17046040698" => "Katy Hill"
+#    "+14158157775" => "Boots",
+#    "+14155551234" => "Virgil"
+    #} 
