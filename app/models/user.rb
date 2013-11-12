@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     :message => "can only contain numbers, no dashes or parentheses are allowed"
   validates_length_of :phone_number, :maximum => 11
   validates_length_of :phone_number, :minimum => 11,
-    :message => "must start with +1 followed by area code then number"
+    :message => "must start with 1 followed by area code then number"
   validates :relationship, presence: true
 
 #all my validations are happy!

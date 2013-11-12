@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
     sender = params[:From]
 
     user = User.find_sender(sender[1..11])
-    puts "[DEBUG]" + [sender, User.all.collect{ |u| u.phone_number }].inspect
+#    puts "[DEBUG]" + [sender, User.all.collect{ |u| u.phone_number }].inspect
     if user.nil?
       render :text => sms_message("You are not registered to request parking codes.")
 
