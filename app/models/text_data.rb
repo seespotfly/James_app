@@ -11,6 +11,11 @@ belongs_to :user
     date = Date.parse(string)
   end
 
+#  def self.text_date(:Body)
+#    string = text_date
+#    date = Date.parse(string)
+#  end
+
 #    if (Date.parse(:body))
 #      return codedate
 #    else

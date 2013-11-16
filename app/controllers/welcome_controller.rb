@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
       text_data = TextData.new(params.permit (:text_data))
       text_data.user = user
       text_data.save
-      render :text => sms_message(text_date.codedate)
+      render :text => sms_message(text_data.codedate)
     end
   end
 
