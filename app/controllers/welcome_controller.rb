@@ -10,9 +10,9 @@ class WelcomeController < ApplicationController
       render :text => sms_message("You are not registered to request parking codes.")
 
     else
-      text_info = TextData.new(params)
-      text_info.user = user
-      text_info.save
+#      text_data = TextData.new(params)
+#      text_data.user = user
+#      text_data.save
       render :text => sms_message(text_date.codedate)
     end
   end
