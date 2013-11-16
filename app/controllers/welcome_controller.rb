@@ -10,15 +10,16 @@ class WelcomeController < ApplicationController
       render :text => sms_message("You are not registered to request parking codes.")
 
     else
-#      text_data = TextData.new(params)
-#      text_data.user = user
-#      text_data.save
-      text_date = TextData.new(params)
+      text_data = TextData.new(params)
+      text_data.user = user
+      text_data.save
       render :text => sms_message(text_date.codedate)
     end
   end
 
   private
+
+  params.permit(:text_data)
 
   def sms_message(txt)
     twiml = Twilio::TwiML::Response.new do |r|
