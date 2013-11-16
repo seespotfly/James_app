@@ -5,10 +5,10 @@ class ParkingCode < ActiveRecord::Base
   validates_length_of :code, :minimum => 8
   validates :codedate, uniqueness: true
 
-  def self.message_for(date)
-    pc = ParkingCode.where(codedate: Date.today).first
+  def self.code_for(date)
+    pc = ParkingCode.where(codedate: date).first
     if pc.nil?
-      "I don't have today's parking code."
+      "I don't have a code for that date."
     else
       pc.code
     end
