@@ -7,7 +7,7 @@ belongs_to :user
   end
 
   def text_date
-    string = :text_body
+    string = :Body
     date = Date.parse(string)
   end
 
