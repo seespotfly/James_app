@@ -6,15 +6,15 @@ belongs_to :user
     ParkingCode.code_for(text_date)
   end
 
-  def text_date
-    string = self.text_body
-    date = Date.parse(string)
-  end
-
-#  def self.text_date(:Body)
-#    string = text_date
+#  def text_date
+#    string = self.text_body
 #    date = Date.parse(string)
 #  end
+
+  def self.text_date(:Body)
+    string = text_date
+    date = Date.parse(string)
+  end
 
 #    if (Date.parse(:body))
 #      return codedate
