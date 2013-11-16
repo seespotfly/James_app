@@ -13,6 +13,7 @@ class WelcomeController < ApplicationController
 #      text_data = TextData.new(params)
 #      text_data.user = user
 #      text_data.save
+      text_date = TextData.new(params)
       render :text => sms_message(text_date.codedate)
     end
   end
