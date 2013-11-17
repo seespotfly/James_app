@@ -12,6 +12,13 @@ belongs_to :user
     date = Date.parse(string)
   end
 
+#Code to associate :Body from twilio with text_body
+  def self.from_twilio(hash)
+    td = TextData.new
+    td.text_body = params[:Body]
+    td
+  end
+
 #  def self.text_body
 #    text_body.body = body
 #    text_body.save
