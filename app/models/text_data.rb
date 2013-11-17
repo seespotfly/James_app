@@ -16,6 +16,13 @@ belongs_to :user
   def self.from_twilio(hash)
     td = TextData.new
     td.text_body = hash[:Body]
+    td.message_sid
+    td.sms_sid
+    td.account_sid
+    td.text_to
+    td.text_from
+    td.num_media
+    td.user_id
     td
   end
 
