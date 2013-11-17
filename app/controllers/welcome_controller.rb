@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     sender = params[:From]
 
     #intended to associate :Body from twilio with text_body in the DB
-    text_body = params[:Body]
+    #text_body = params[:Body]
 
     user = User.find_sender(sender[1..11])
 #this code will help to debug whats happening in Heroku 
