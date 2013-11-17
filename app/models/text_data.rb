@@ -15,7 +15,7 @@ belongs_to :user
 #Code to associate :Body from twilio with text_body
   def self.from_twilio(hash)
     td = TextData.new
-    td.text_body = params[:Body]
+    td.text_body = hash[:Body]
     td
   end
 
