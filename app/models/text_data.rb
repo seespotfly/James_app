@@ -6,9 +6,6 @@ belongs_to :user
     ParkingCode.code_for(text_date)
   end
 
-#intended to associate :Body from twilio with text_body in the DB
-text_body = params[:Body]
-
 #Code to define the Body of the text as a date
   def text_date
     string = self.text_body
