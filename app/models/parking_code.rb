@@ -8,7 +8,7 @@ class ParkingCode < ActiveRecord::Base
   def self.code_for(date)
     pc = ParkingCode.where(codedate: date).first
     if pc.nil?
-      "I don't have a code for that date."
+      pc
     else
       pc.code
     end

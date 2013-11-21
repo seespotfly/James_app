@@ -3,7 +3,13 @@ class TextData < ActiveRecord::Base
 belongs_to :user
 
   def codedate
-    ParkingCode.code_for(text_date)
+    pc = ParkingCode.code_for(text_date)
+      if pc.nil?
+        "I don't have a code for that date."
+      else
+        self.update_attribute :success, true
+        pc
+      end
   end
 
 #Code to define the Body of the text as a date
@@ -12,7 +18,12 @@ belongs_to :user
     date = Date.parse(string)
   end
 
-#Code to associate :Body from twilio with text_body
+#To keep track of the number of codes a user has used
+#  def too_many_codes
+
+#  end
+
+#Code to associate :Body, etc. from twilio with text_body, etc. in the DB
   def self.from_twilio(hash)
     td = TextData.new
     td.text_body = hash[:Body]
@@ -24,22 +35,6 @@ belongs_to :user
     td.num_media = hash[:NumMedia]
     td
   end
-
-#  def self.text_body
-#    text_body.body = body
-#    text_body.save
-#  end
-
-#  def self.text_date(Body)
-#    string = text_date
-#    date = Date.parse(string)
-#  end
-
-#    if (Date.parse(:body))
-#      return codedate
-#    else
-#      return false
-#    end
 
 #    Date.today
 

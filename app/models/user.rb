@@ -10,14 +10,21 @@ class User < ActiveRecord::Base
     :message => "must start with 1 followed by area code then number"
   validates :relationship, presence: true
 
-#  has_many :text_data
+  has_many :text_data
 
 #all my validations are happy!
 
   def self.find_sender(phone_number)
     User.where(phone_number: phone_number).first
   end
+
+  def text_count
+    text_data.count
+  end
+
 end
+
+
 
 
         #friends = {
