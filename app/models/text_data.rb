@@ -8,6 +8,7 @@ belongs_to :user
         "I don't have a code for that date."
       else
         self.update_attribute :success, true
+#        text_success, true
         pc
       end
   end
