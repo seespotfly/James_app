@@ -9,9 +9,9 @@ belongs_to :user
       else
         self.update_attribute :success, true
 #NEW CODE to save text success
-        td.text_success, true
-        td.save
-        pc
+#        td.text_success, true
+#        td.save
+#        pc
       end
   end
 
