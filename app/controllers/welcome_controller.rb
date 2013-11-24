@@ -9,8 +9,9 @@ class WelcomeController < ApplicationController
     if user.nil?
       render :text => sms_message("You are not registered to request parking codes.")
 
-    #elsif user.too_many_codes?
-    #render :text => sms_message("You have used your allotment of parking codes.")
+#NEW CODE warning if code limit is reached
+    elsif user.too_many_codes?
+    render :text => sms_message("This is your last free code for the month" (text_data.codedate))
 
     else
       text_data = TextData.from_twilio(params)

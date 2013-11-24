@@ -18,9 +18,14 @@ class User < ActiveRecord::Base
     User.where(phone_number: phone_number).first
   end
 
-  def text_count
-    text_data.count
-  end
+#  def text_count
+#    text_data.count
+#  end
+
+#To count the number of successful codes given by user
+
+#samples:
+#visits.by_month(@month).select("DISTINCT(household_id)").count
 
 end
 

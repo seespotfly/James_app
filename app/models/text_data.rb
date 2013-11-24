@@ -8,7 +8,9 @@ belongs_to :user
         "I don't have a code for that date."
       else
         self.update_attribute :success, true
-#        text_success, true
+#NEW CODE to save text success
+        td.text_success, true
+        td.save
         pc
       end
   end
@@ -19,10 +21,11 @@ belongs_to :user
     date = Date.parse(string)
   end
 
-#To keep track of the number of codes a user has used
+#NEW CODE To keep track of the number of codes a user has used
 #  def too_many_codes
 
-#  end
+
+  end
 
 #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
   def self.from_twilio(hash)
