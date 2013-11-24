@@ -9,9 +9,8 @@ belongs_to :user
       else
         self.update_attribute :success, true
 #NEW CODE to save text success
-#        td.text_success, true
-#        td.save
-#        pc
+        self.text_success :success, true
+        pc
       end
   end
 
@@ -25,7 +24,7 @@ belongs_to :user
 #  def too_many_codes
 
 
-  end
+#  end
 
 #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
   def self.from_twilio(hash)
