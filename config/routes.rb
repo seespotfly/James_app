@@ -1,4 +1,6 @@
 JamesApp::Application.routes.draw do
+  resources :text_data
+
   resources :users
 
   resources :parking_codes
