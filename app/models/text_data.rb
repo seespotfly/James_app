@@ -41,5 +41,3 @@ belongs_to :user
   end
 
 #    Date.today
-
-end
