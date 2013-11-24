@@ -38,5 +38,5 @@ belongs_to :user
     td.num_media = hash[:NumMedia]
     td
   end
-
+end
 #    Date.today
