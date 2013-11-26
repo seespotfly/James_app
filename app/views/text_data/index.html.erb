@@ -12,9 +12,15 @@
   <tbody>
     <% @text_data.each do |text_datum| %>
       <tr>
-        <td><%= link_to 'Show', text_datum %></td>
-        <td><%= link_to 'Edit', edit_text_datum_path(text_datum) %></td>
-        <td><%= link_to 'Destroy', text_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= text_data.message_sid %></td>
+        <td><%= text_data.sms_sid %></td>
+        <td><%= text_data.account_sid %></td>
+        <td><%= text_data.text_to %></td>
+        <td><%= text_data.text_from %></td>
+        <td><%= text_data.text_body %></td>
+        <td><%= text_data.num_media %></td>
+        <td><%= text_data.user_id %></td>
+        <td><%= text_data.text_success %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,3 +29,24 @@
 <br>
 
 <%= link_to 'New Text datum', new_text_datum_path %>
+
+
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone number</th>
+      <th>Company</th>
+      <th>Relationship</th>
+      <th>Text count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>

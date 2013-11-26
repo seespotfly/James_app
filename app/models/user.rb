@@ -18,9 +18,11 @@ class User < ActiveRecord::Base
     User.where(phone_number: phone_number).first
   end
 
-#  def text_count
-#    text_data.count
-#  end
+#count successful texts
+  def text_count
+    tc = TextData.text_success
+    user.by_month(@month).tc.count
+  end
 
 #To count the number of successful codes given by user
 
