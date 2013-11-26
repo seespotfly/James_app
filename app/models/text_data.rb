@@ -9,7 +9,7 @@ belongs_to :user
       else
         self.update_attribute :success, true
 #NEW CODE to save text success
-        self.text_success :success, true
+#        self.text_success :success, true
         pc
       end
   end
