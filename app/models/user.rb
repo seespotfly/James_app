@@ -20,14 +20,10 @@ class User < ActiveRecord::Base
 
 #count successful texts
   def text_count
-    tc = TextData.text_success
-    user.by_month(@month).tc.count
+    text_data.where(text_success:true).count.
+      where(["extract(month from created_at) = ?",Date.today.month]).
+      where(["extract(year from created_at) = ?",Date.today.year])
   end
-
-#To count the number of successful codes given by user
-
-#samples:
-#visits.by_month(@month).select("DISTINCT(household_id)").count
 
 end
 

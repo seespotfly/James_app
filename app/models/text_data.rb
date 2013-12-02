@@ -7,9 +7,7 @@ belongs_to :user
       if pc.nil?
         "I don't have a code for that date."
       else
-        self.update_attribute :success, true
-#NEW CODE to save text success
-#        self.text_success :success, true
+        self.update_attribute(:text_success, true)
         pc
       end
   end
@@ -22,8 +20,6 @@ belongs_to :user
 
 #NEW CODE To keep track of the number of codes a user has used
 #  def too_many_codes
-
-
 #  end
 
 #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
