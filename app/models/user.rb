@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
 
 #count successful texts
   def text_count
-    text_data.where(text_success:true).count.
+    text_data.where(text_success:true).
       where(["extract(month from created_at) = ?",Date.today.month]).
-      where(["extract(year from created_at) = ?",Date.today.year])
+      where(["extract(year from created_at) = ?",Date.today.year]).count
   end
 
 end
