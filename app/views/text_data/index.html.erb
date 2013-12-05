@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @text_data.all do |text_datum| %>
+    <% @text_data.each do |text_data| %>
       <tr>
         <td><%= text_data.message_sid %></td>
         <td><%= text_data.sms_sid %></td>
