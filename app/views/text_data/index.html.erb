@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @text_data.each do |text_datum| %>
+    <% @text_data.each do |text_data| %>
       <tr>
         <td><%= text_data.message_sid %></td>
         <td><%= text_data.sms_sid %></td>
@@ -28,4 +28,3 @@
 
 <br>
 
-<%= link_to 'New Text datum', new_text_datum_path %>
