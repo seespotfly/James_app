@@ -26,18 +26,13 @@ class User < ActiveRecord::Base
 
 #set by relationships: desk, office, suite, partner, packard
   def code_limit(relationship)
-    if User.relationship == desk
-      code_limit => 1
-    elsif User.relationship == suite
-      code_limit => 5
-    elsif User.relationship == partner
-      code_limit => 5
-    elsif User.relationship == packard
-      code_limit => 100
+    cl = User.relationship
+    cl.desk = 1
+    cl.office = 10
+    cl.suite = 5
+    cl.partner = 5
+    cl.packard = 100
   end
-
-#if cat.name == "beauty"
-    #doworkhere
 
 end
 
