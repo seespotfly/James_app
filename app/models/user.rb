@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
 #set by relationships: desk, office, suite, partner, packard
-  def self.code_limit(relationship)
+  def code_limit(relationship)
     User.relationship(desk: 1, office: 5, suite: 10, partner: 5, packard: 100)
 #    desk = 1
 #    office = 5
