@@ -5,7 +5,7 @@ belongs_to :user
   def codedate
     pc = ParkingCode.code_for(text_date)
       if pc.nil?
-        "I don't have a code for that date, please use YY-MM-DD format."
+        "not in the system, please use YY-MM-DD format."
       else
         self.update_attribute(:text_success, true)
         pc
