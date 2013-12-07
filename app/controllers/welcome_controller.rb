@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
       text_data.user = user
       text_data.save
 #      puts "[DEBUG]" + text_data.inspect
-      render :text => sms_message("The parking code for #{codedate} is #{text_data.codedate}")
+      render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}")
     end
   end
 
