@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :text_data, class_name: "TextData"
 
-#all my validations are happy!
-
+#Validates that an incomming phone number is a user in the system
   def self.find_sender(phone_number)
     User.where(phone_number: phone_number).first
   end
@@ -25,20 +24,15 @@ class User < ActiveRecord::Base
       where(["extract(year from created_at) = ?",Date.today.year]).count
   end
 
-#NEW CODE To keep track of the number of codes a user has used
-#  def code_limit_reached
-#    self.relationship.where(text_count:code_limit)
-#  end
-
 #set by relationships: desk, office, suite, partner, packard
-#  def self.code_limit(relationship)
-#like this?    User.where(relationship: desk = 4)
+  def self.code_limit(relationship)
+    User.where(relationship: desk = 1, office = 5, suite = 10, partner = 5, packard = 100)
 #    desk = 1
 #    office = 5
 #    suite = 10
 #    partner = 5
 #    packard = 100
-#  end
+  end
 
 
 end

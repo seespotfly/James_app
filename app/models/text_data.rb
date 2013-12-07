@@ -18,6 +18,11 @@ belongs_to :user
     date = Date.parse(string)
   end
 
+#NEW CODE To keep track of the number of codes a user has used
+#  def code_limit
+#    User.text_count(user)
+#  end
+
 #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
   def self.from_twilio(hash)
     td = TextData.new
