@@ -26,19 +26,19 @@ class User < ActiveRecord::Base
   end
 
 #NEW CODE To keep track of the number of codes a user has used
-  def code_limit_reached
-    self.relationship.where(text_count:code_limit)
-  end
+#  def code_limit_reached
+#    self.relationship.where(text_count:code_limit)
+#  end
 
 #set by relationships: desk, office, suite, partner, packard
-  def self.code_limit(relationship)
+#  def self.code_limit(relationship)
 #like this?    User.where(relationship: desk = 4)
-    desk = 1
-    office = 5
-    suite = 10
-    partner = 5
-    packard = 100
-  end
+#    desk = 1
+#    office = 5
+#    suite = 10
+#    partner = 5
+#    packard = 100
+#  end
 
 
 end
