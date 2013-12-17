@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
       render :text => sms_message("You are not registered to request parking codes.")
 
 #NEW CODE warning if code limit is reached
-    elsif user.text_limit?
+    elsif user.text_limit.false
     render :text => sms_message("You've reached your limit of free codes for the month.")
 
     else
