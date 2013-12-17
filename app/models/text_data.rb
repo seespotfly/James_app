@@ -1,6 +1,6 @@
 class TextData < ActiveRecord::Base
 
-belongs_to :user
+belongs_to :user, class_name: "User"
 
   def codedate
     pc = ParkingCode.code_for(text_date)
