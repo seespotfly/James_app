@@ -24,40 +24,21 @@ class User < ActiveRecord::Base
       where(["extract(year from created_at) = ?",Date.today.year]).count
   end
 
-#  def relationship
-#    @relationship
-#  end
-
-#set by relationships: desk, office, suite, partner, packard
+#set code limits by relationships: desk, office, suite, partner, packard
   def code_limit; {
-      'Desk' => 1,
-      'Office' => 5,
-      'Suite' => 10,
-      'Partner' => 10,
-      'Packard Place' => 100
-      }
-#      code_limit.default = 0
+    'Desk' => 1,
+    'Office' => 5,
+    'Suite' => 10,
+    'Partner' => 10,
+    'Packard Place' => 100
+    }
+  end
+
+  def text_limit
+    user.code_limit[user.relationship] < user.text_count
   end
 
 end
-
-
-#   def code_limit(relationship)
-#     User.relationship(desk: 1, office: 5, suite: 10, partner: 5, packard: 100)
-# #    desk = 1
-# #    office = 5
-# #    suite = 10
-# #    partner = 5
-# #    packard = 100
-#   end
-
-  # def code_limit(relationship)
-  #   cl = User.relationship
-  #   cl.desk = 1
-  #   cl.office = 10
-  #   cl.suite = 5
-  #   cl.partner = 5
-  #   cl.packard = 100
 
 
 
