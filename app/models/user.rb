@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def text_limit
-    User.code_limit[User.relationship] <= User.text_count
+    code_limit[user.relationship] <= user.text_count
   end
 
 end
