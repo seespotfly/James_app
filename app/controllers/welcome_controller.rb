@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
 #This bit is BROKEN
 #NEW CODE warning if code limit is reached
     else
-      if User.text_limit.true
+      if User.code_limit[user.relationship] = User.text_count
         render :text => sms_message("DEBUG You've reached your limit of free codes for the month.")
 
       else
