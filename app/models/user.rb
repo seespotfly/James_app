@@ -34,12 +34,14 @@ class User < ActiveRecord::Base
     }
   end
 
+#This bit is BROKEN
   def text_limit
-    code_limit[User(:relationship)] <= User.text_count
+    code_limit[user.relationship] = user.text_count
   end
 
 end
 
+code_limit[user.relationship]
 
 
 
