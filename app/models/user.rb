@@ -41,8 +41,6 @@ class User < ActiveRecord::Base
 
 end
 
-code_limit[user.relationship]
-
 
 
 
