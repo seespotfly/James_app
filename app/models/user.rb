@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
 #set code limits by relationships: desk, office, suite, partner, packard
-  def code_limit; {
+  def @code_limit; {
     'Desk' => 1,
     'Office' => 5,
     'Suite' => 10,
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
 #This bit is BROKEN
   def self.text_limit
-    User.code_limit[user.relationship] = user.text_count
+    @code_limit[user.relationship] = user.text_count
   end
 
 end
