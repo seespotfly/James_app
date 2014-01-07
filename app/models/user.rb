@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
 #This bit is BROKEN
-  def text_limit
+  def self.text_limit
     code_limit[user.relationship] = user.text_count
   end
 
