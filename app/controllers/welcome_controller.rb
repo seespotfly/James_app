@@ -17,6 +17,9 @@ class WelcomeController < ApplicationController
 
 #Warning User has reached their limit
       else
+        text_data = TextData.from_twilio(params)
+        text_data.user = user
+        text_data.save
         render :text => sms_message("You've requested #{user.text_count} codes")
 
       end
