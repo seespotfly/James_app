@@ -34,10 +34,14 @@ class User < ActiveRecord::Base
     }
   end
 
-#This bit is BROKEN
-#  def self.text_limit
-#    User.code_limit[user.relationship] = User.text_count
-#  end
+#Defining a text limit and establishing its relationship to the code limit variable
+  def text_limit
+    code_limit[relationship]
+  end
+
+  def under_code_limit?
+    text_limit > text_count
+  end
 
 end
 

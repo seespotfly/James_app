@@ -12,15 +12,15 @@ class WelcomeController < ApplicationController
 #This bit is BROKEN
 #NEW CODE warning if code limit is reached
     else
-      if User.code_limit[user.relationship] = User.text_count
-        render :text => sms_message("DEBUG You've reached your limit of free codes for the month.")
-
-      else
+      if User.under_code_limit?
         text_data = TextData.from_twilio(params)
         text_data.user = user
         text_data.save
-#      puts "[DEBUG]" + text_data.inspect
         render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}")
+
+      else
+        render :text => sms_message("You've reached the limit of free codes for the month.")
+
       end
     end
   end
