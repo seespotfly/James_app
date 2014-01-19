@@ -2,15 +2,12 @@ class WelcomeController < ApplicationController
   def index
 
     sender = params[:From]
-
     user = User.find_sender(sender[1..11])
-#this code will help to debug whats happening in Heroku 
-#    puts "[DEBUG]" + [sender, User.all.collect{ |u| u.phone_number }].inspect
+
     if user.nil?
       render :text => sms_message("You are not registered to request parking codes.")
 
-#This bit is BROKEN
-#NEW CODE warning if code limit is reached
+#Successfull Text
     else
       if user.under_code_limit?
         text_data = TextData.from_twilio(params)
@@ -18,8 +15,9 @@ class WelcomeController < ApplicationController
         text_data.save
         render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}")
 
+#Warning User has reached their limit
       else
-        render :text => sms_message("You've reached the limit of free codes for the month.")
+        render :text => sms_message("You've requested #{text_count} codes")
 
       end
     end
