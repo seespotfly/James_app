@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   def code_limit; {
     'Desk' => 1,
     'Office' => 5,
-    'Suite' => 10,
-    'Partner' => 10,
+    'Suite' => 18,
+    'Partner' => 22,
     'Packard Place' => 100
     }
   end
