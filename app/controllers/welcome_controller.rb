@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
         text_data.user = user
         text_data.save
         render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}.
-          You've requested #{user.text_count - text_limit} codes")
+          You've requested #{user.text_count - user.text_limit} codes")
 
       end
     end
