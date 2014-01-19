@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
 
 #Warning User has reached their limit
       else
-        render :text => sms_message("You've requested #{text_count} codes")
+        render :text => sms_message("You've requested #{user.text_count} codes")
 
       end
     end
