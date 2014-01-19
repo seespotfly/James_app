@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
 #This bit is BROKEN
 #NEW CODE warning if code limit is reached
     else
-      if User.under_code_limit?
+      if user.under_code_limit?
         text_data = TextData.from_twilio(params)
         text_data.user = user
         text_data.save
