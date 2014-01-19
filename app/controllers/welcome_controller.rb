@@ -20,7 +20,8 @@ class WelcomeController < ApplicationController
         text_data = TextData.from_twilio(params)
         text_data.user = user
         text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate} You've requested #{user.text_count} codes")
+        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}.
+          You've requested #{user.text_count - text_limit} codes")
 
       end
     end
