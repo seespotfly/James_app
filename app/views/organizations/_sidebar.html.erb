@@ -1,0 +1,30 @@
+<div  id="sidebar" role="navigation" class="col-xs-4 col-sm-4 col-md-4 col-lg-3 sidebar-offcanvas">
+  <div class="panel-group" id="accordion-829268">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-829268" href="#accordion-element-429150">Companies</a>
+        </h4>
+      </div>
+      <div id="accordion-element-429150" class="panel-collapse in">
+        <div class="list-group">
+          <%= link_to "Company listing", organizations_path, class: "list-group-item" %>
+          <%= link_to "New company", new_organization_path, class: "list-group-item" %>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-829268" href="#accordion-element-274747">Relationships</a>
+        </h4>
+      </div>
+      <div id="accordion-element-274747" class="panel-collapse collapse">
+        <div class="list-group">
+          <%= link_to "Relationships listing", relationships_path, class: "list-group-item" %>
+          <%= link_to "Create a new relationship type", new_relationship_path, class: "list-group-item" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

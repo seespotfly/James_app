@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<div id="supporttab" class="panel panel-default tab-pane fade active in">
+  <div class="panel-body">
+    <h1>Company Profile</h1>
 <p>
   <strong>Name:</strong>
   <%= @organization.name %>
@@ -7,8 +8,9 @@
 
 <p>
   <strong>Relationship:</strong>
-  <%= @organization.relationship_id %>
+  <%= @organization.relationship_name %>
 </p>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<%= link_to 'Edit', edit_organization_path(@organization) %>
+</div>
+</div>

@@ -1,29 +1,21 @@
-<h1>Listing relationships</h1>
+<div id="userstab" class="panel panel-default tab-pane fade in active">
+  <div class="panel-body">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Text count</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <h1>Listing relationships</h1>
 
-  <tbody>
-    <% @relationships.each do |relationship| %>
-      <tr>
-        <td><%= relationship.name %></td>
-        <td><%= relationship.text_count %></td>
-        <td><%= link_to 'Show', relationship %></td>
-        <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
-        <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Monthly code limit</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+      <%= render partial: "relationship", collection: @relationships %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<%= link_to 'New Relationship', new_relationship_path %>
