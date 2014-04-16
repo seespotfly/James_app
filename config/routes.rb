@@ -1,4 +1,6 @@
 JamesApp::Application.routes.draw do
+  resource :settings
+
   resources :relationships
 
   resources :organizations

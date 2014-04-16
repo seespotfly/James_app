@@ -9,37 +9,7 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#"><span class="icon-home"></span> SimpleDashboard</a></li>
-        <li><a href="#"><span class="icon-calendar"></span> Calendar</a></li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-list-alt"></span> Widgets <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="http://www.bootstraptor.com"> Action</a></li>
-          <li><a href="http://www.bootstraptor.com"> Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          <li class="divider"></li>
-          <li><a href="#">One more separated link</a></li>
-        </ul>
-        </li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-search"></span>Search <b class="caret"></b></a>
-        <ul class="dropdown-menu" style="min-width: 310px;">
-          <li>
-          <div class="row">
-            <div class="col-md-12">
-              <form class="navbar-form navbar-left" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">
-                      Go!</button>
-                  </span>
-                </div>
-              </form>
-            </div>
-          </div>
-          </li>
-        </ul>
+        <li class="active"><a href="#"><span class="icon-home"></span>JamesApp</a></li>
         </li>
       </ul>
 
@@ -66,8 +36,10 @@
         </li>
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-user"></span> Admin <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#"><span class="icon-user"></span> Profile</a></li>
-          <li><a href="#"><span class="icon-cog"></span> Settings</a></li>
+          <li><%= link_to(settings_path) do %>
+              <span class="icon-cog"></span> Settings</a>
+            <% end %>  
+          </li>
           <li class="divider"></li>
           <li><a href="#"><span class="icon-off"></span> Logout</a></li>
         </ul>

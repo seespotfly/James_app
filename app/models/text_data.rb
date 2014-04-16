@@ -47,6 +47,15 @@ class TextData < ActiveRecord::Base
     td.text_to = hash[:To]
     td.text_from = hash[:From]
     td.num_media = hash[:NumMedia]
-    td
+    td.evaluate
+  end
+
+  def evaluate
+    if Setting.date_scheme?
+      self.text_success = false
+    else
+      self.text_success = false
+    end
+    self
   end
 end

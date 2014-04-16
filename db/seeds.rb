@@ -21,3 +21,5 @@ if Organization.count == 0
   owner = Relationship.find_by_name("Owner")
   Organization.create(name: "Packard Place", relationship_id: owner.id)
 end
+
+Setting.create(code_scheme: 0) if Setting.count == 0
