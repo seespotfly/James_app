@@ -1,4 +1,8 @@
-<%= form_for(@parking_code) do |f| %>
+
+<%= form_for(@parking_code, html: {role: "form"}) do |f| %>
+  <div class="form-group">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <% if @parking_code.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@parking_code.errors.count, "error") %> prohibited this parking_code from being saved:</h2>
@@ -19,7 +23,11 @@
     <%= f.label :codedate %><br>
     <%= f.date_select :codedate %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+      <p>&nbsp;</p>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary btn-md"  %>
+      </div>
+    </div>
   </div>
+</div>
 <% end %>

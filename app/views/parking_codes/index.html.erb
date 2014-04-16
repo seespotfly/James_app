@@ -1,29 +1,29 @@
-<h1>Listing parking_codes</h1>
+<div id="userstab" class="panel panel-default tab-pane fade in active">
+  <div class="panel-body">
+    <h1>Parking Codes</h1>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>
+            Code
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            &nbsp;
+          </th>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
 
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Codedate</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <%= render :partial => "parking_code", :collection => @parking_codes %>
 
-  <tbody>
-    <% @parking_codes.each do |parking_code| %>
-      <tr>
-        <td><%= parking_code.code %></td>
-        <td><%= parking_code.codedate %></td>
-        <td><%= link_to 'Show', parking_code %></td>
-        <td><%= link_to 'Edit', edit_parking_code_path(parking_code) %></td>
-        <td><%= link_to 'Destroy', parking_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
+</div>
+</div>
 
-<br>
-
-<%= link_to 'New Parking code', new_parking_code_path %>
