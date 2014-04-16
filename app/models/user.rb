@@ -8,13 +8,19 @@ class User < ActiveRecord::Base
   validates_length_of :phone_number, :maximum => 11
   validates_length_of :phone_number, :minimum => 11,
     :message => "must start with 1 followed by area code then number"
-  validates :relationship, presence: true
+  validates :company_id, presence: true
+
+  belongs_to :organization, foreign_key: :company_id
 
   has_many :text_data, class_name: "TextData"
 
 #Validates that an incomming phone number is a user in the system
   def self.find_sender(phone_number)
     User.where(phone_number: phone_number).first
+  end
+
+  def company_name
+    organization.name
   end
 
 #count successful texts

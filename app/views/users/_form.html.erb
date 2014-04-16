@@ -23,12 +23,8 @@
         <%= f.text_field :phone_number %>
       </div>
       <div class="field">
-        <%= f.label :company %><br>
-        <%= f.text_field :company %>
-      </div>
-      <div class="field">
-        <%= f.label :relationship %><br>
-        <%= f.select :relationship, @user.code_limit.map{ |k,v| [k,k] } %>
+        <%= f.label :company_id, "Company" %><br>
+        <%= f.select :company_id, Organization.all.map{ |o| [o.name, o.id] } %>
       </div>
       <p>&nbsp;</p>
       <div class="actions">
