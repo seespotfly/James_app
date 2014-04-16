@@ -1,18 +1,19 @@
 class TextData < ActiveRecord::Base
 
-belongs_to :user, class_name: "User"
+  belongs_to :user, class_name: "User"
+  belongs_to :company
 
   def codedate
     pc = ParkingCode.code_for(text_date)
-      if pc.nil?
-        "not in the system, please use YY-MM-DD format."
-      else
-        self.update_attribute(:text_success, true)
-        pc
-      end
+    if pc.nil?
+      "not in the system, please use YY-MM-DD format."
+    else
+      self.update_attribute(:text_success, true)
+      pc
+    end
   end
 
-#Code to define the Body of the text as a date
+  #Code to define the Body of the text as a date
   def text_date
     string = self.text_body
     if !string.nil?
@@ -22,7 +23,13 @@ belongs_to :user, class_name: "User"
     end
   end
 
-#Code to associate :Body, etc. from twilio with text_body, etc. in the DB
+  def self.company_count(company)
+    company.text_data.where(text_success:true).
+      where(["extract(month from created_at) = ?",Date.today.month]).
+      where(["extract(year from created_at) = ?",Date.today.year]).count
+  end
+
+  #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
   def self.from_twilio(hash)
     td = TextData.new
     td.text_body = hash[:Body]
@@ -35,4 +42,3 @@ belongs_to :user, class_name: "User"
     td
   end
 end
-#    Date.today

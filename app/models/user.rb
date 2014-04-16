@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :text_data, class_name: "TextData"
 
-#Validates that an incomming phone number is a user in the system
+  #Validates that an incomming phone number is a user in the system
   def self.find_sender(phone_number)
     User.where(phone_number: phone_number).first
   end
@@ -23,31 +23,9 @@ class User < ActiveRecord::Base
     organization.name
   end
 
-#count successful texts
-  def text_count
-    text_data.where(text_success:true).
-      where(["extract(month from created_at) = ?",Date.today.month]).
-      where(["extract(year from created_at) = ?",Date.today.year]).count
-  end
+  delegate :under_limit?, to: :organization
+  delegate :texts_left, to: :organization
 
-#set code limits by relationships: desk, office, suite, partner, packard
-  def code_limit; {
-    'Desk' => 1,
-    'Office' => 5,
-    'Suite' => 18,
-    'Partner' => 22,
-    'Packard Place' => 100
-    }
-  end
-
-#Defining a text limit and establishing its relationship to the code limit variable
-  def text_limit
-    code_limit[relationship]
-  end
-
-  def under_code_limit?
-    text_limit > text_count
-  end
 
 end
 

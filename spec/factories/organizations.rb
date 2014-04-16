@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :organization do
-    name "MyString"
-    relationship_id 1
+    name "Packard Place"
+    relationship
   end
 end

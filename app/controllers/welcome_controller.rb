@@ -7,20 +7,19 @@ class WelcomeController < ApplicationController
     if user.nil?
       render :text => sms_message("You are not registered to request parking codes.")
 
-#Successfull Text
+      #Successfull Text
     else
-      if user.under_code_limit?
+      if user.under_limit?
         text_data = TextData.from_twilio(params)
         text_data.user = user
+        text_data.company_id = user.company_id
         text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You have #{user.text_limit - user.text_count} free codes left.")
-
-#Warning User has reached their limit
+        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You have #{user.texts_left} free codes left.")
       else
         text_data = TextData.from_twilio(params)
         text_data.user = user
         text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You're #{user.text_count - user.text_limit} over your limit.")
+        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You're #{user.texts_left.abs} over your limit.")
 
       end
     end
