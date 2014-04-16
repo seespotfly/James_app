@@ -15,7 +15,11 @@ belongs_to :user, class_name: "User"
 #Code to define the Body of the text as a date
   def text_date
     string = self.text_body
-    date = Date.parse(string)
+    if !string.nil?
+      Date.parse(string)
+    else
+      Date.today
+    end
   end
 
 #Code to associate :Body, etc. from twilio with text_body, etc. in the DB
