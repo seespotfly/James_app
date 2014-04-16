@@ -21,4 +21,8 @@ class Organization < ActiveRecord::Base
     relationship.text_count > self.text_count
   end
 
+  def to_s
+    [name, relationship_name].join(": ")
+  end
+
 end
