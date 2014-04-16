@@ -50,6 +50,8 @@ end
 gem "pg"
 gem "unicorn"
 gem "foreman"
+gem 'kaminari'
+
 group :development, :test do
   gem "rspec-rails", "2.13.0"
   gem "pry"

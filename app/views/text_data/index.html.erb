@@ -4,20 +4,19 @@
     <table class="table table-responsive table-striped">
       <thead>
         <tr>
-      <th>Account ID</th>
-      <th>To</th>
-      <th>From</th>
-      <th>Body</th>
-      <th>User ID</th>
-      <th>User Name</th>
+          <th>From</th>
+          <th>Body</th>
+          <th>User</th>
+          <th>Company</th>
         </tr>
       </thead>
       <tbody>
 
       <%= render :partial => "text_datum", :collection => @text_data %>
 
-  </tbody>
-</table>
-</div>
+      </tbody>
+    </table>
+    <%= paginate @text_data %>
+  </div>
 </div>
 

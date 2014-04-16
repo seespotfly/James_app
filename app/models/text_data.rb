@@ -1,7 +1,15 @@
 class TextData < ActiveRecord::Base
 
   belongs_to :user, class_name: "User"
-  belongs_to :company
+  belongs_to :organization, foreign_key: :company_id
+
+  def user_name
+    user.nil? ? "N/A" : user.name
+  end
+
+  def organization_name
+    organization.nil? ? "N/A" : organization.name
+  end 
 
   def codedate
     pc = ParkingCode.code_for(text_date)
