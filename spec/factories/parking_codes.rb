@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :parking_code do
-    code 1
+    code { 8.times.collect { |i| rand(10).to_s }.join("") }
     codedate "2013-10-24"
   end
 end

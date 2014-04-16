@@ -3,6 +3,8 @@ class TextData < ActiveRecord::Base
   belongs_to :user, class_name: "User"
   belongs_to :organization, foreign_key: :company_id
 
+  attr_accessor :outgoing_sms_body
+
   def user_name
     user.nil? ? "N/A" : user.name
   end
@@ -12,7 +14,7 @@ class TextData < ActiveRecord::Base
   end 
 
   def codedate
-    pc = ParkingCode.code_for(text_date)
+    pc = ParkingCode.code_for(parse_date_from_body)
     if pc.nil?
       "not in the system, please use YY-MM-DD format."
     else
@@ -22,10 +24,14 @@ class TextData < ActiveRecord::Base
   end
 
   #Code to define the Body of the text as a date
-  def text_date
+  def parse_date_from_body
     string = self.text_body
-    if !string.nil?
-      Date.parse(string)
+    if !string.blank?
+      begin
+        Date.parse(string)
+      rescue ArgumentError
+        nil
+      end
     else
       Date.today
     end
@@ -47,12 +53,38 @@ class TextData < ActiveRecord::Base
     td.text_to = hash[:To]
     td.text_from = hash[:From]
     td.num_media = hash[:NumMedia]
+    td.locate(hash)
     td.evaluate
+  end
+
+  def locate(hash)
+    sender = hash[:From]
+    return unless sender
+    self.user = User.find_sender(sender[1..11])
+    if self.user
+      self.organization = self.user.organization
+    end
   end
 
   def evaluate
     if Setting.date_scheme?
-      self.text_success = false
+      pc = ParkingCode.code_for(parse_date_from_body)
+      if pc.nil?
+        self.text_success = false
+        self.outgoing_sms_body = "We do not have a parking code for that input.  Use YYYY-MM-DD with the date you'd like a code"
+      else
+        if user
+          self.text_success = true
+          self.outgoing_sms_body = if user.under_limit?
+            "The parking code for #{parse_date_from_body} is #{pc}. You have #{user.texts_left} free codes left."
+          else
+            "The parking code for #{parse_date_from_body} is #{pc}. You're #{user.texts_left.abs} over your limit."
+          end
+        else
+          self.text_success = false
+          self.outgoing_sms_body = "You are not authorized to request parking codes from this phone number."
+        end
+      end
     else
       self.text_success = false
     end

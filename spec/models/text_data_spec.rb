@@ -7,12 +7,18 @@ describe TextData do
     it "should parse a given date" do
       data = TextData.new
       data.text_body = "2013-10-12"
-      date = data.text_date
+      date = data.parse_date_from_body
       date.should == Date.parse("2013-10-12")
+    end
+    it "should not die on trash" do
+      data = TextData.new
+      data.text_body = "mickey"
+      date = data.parse_date_from_body
+      date.should == nil
     end
     it "should parse default date" do
       data = TextData.new
-      date = data.text_date
+      date = data.parse_date_from_body
       date.should == Date.today
     end
   end
@@ -40,7 +46,29 @@ describe TextData do
       context "empty input" do
         it{ should be_valid }
         its(:text_success){ should == false }
+        its(:outgoing_sms_body){ should_not be_nil }
       end
+
+      context "date in past or not available" do
+        before(:each) do
+          @params = twilio_params(:Body => "2014-04-12")
+        end
+        it{ should be_valid }
+        its(:text_success){ should == false }
+        its(:outgoing_sms_body){ should_not be_nil }
+      end
+
+      context "date available" do
+        before(:each) do
+          date = "2014-04-16"
+          create(:parking_code, codedate: Date.parse(date))
+          @params = twilio_params(:Body => date)
+        end
+        it{ should be_valid }
+        its(:text_success){ binding.pry; subject.should == true }
+        its(:outgoing_sms_body){ should_not be_nil }
+      end
+
 
     end
 

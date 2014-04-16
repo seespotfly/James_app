@@ -3,7 +3,7 @@ class Organization < ActiveRecord::Base
   belongs_to :relationship
   validates :relationship_id, presence: true
 
-  has_many :text_data, class_name: "TextData"
+  has_many :text_data, class_name: "TextData", foreign_key: "company_id"
 
   def relationship_name
     relationship.name
