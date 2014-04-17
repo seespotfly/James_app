@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :user do
     name "Test User"
-    phone_number "1238675309"
+    phone_number "11238675309"
     organization
   end
 end

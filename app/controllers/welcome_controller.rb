@@ -14,12 +14,12 @@ class WelcomeController < ApplicationController
         text_data.user = user
         text_data.company_id = user.company_id
         text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You have #{user.texts_left} free codes left.")
+        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You have #{user.texts_left-1} free codes left.")
       else
         text_data = TextData.from_twilio(params)
         text_data.user = user
         text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You're #{user.texts_left.abs} over your limit.")
+        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You're #{user.texts_left.abs+1} over your limit.")
 
       end
     end

@@ -28,8 +28,8 @@ describe TextData do
     context "population from Twilio" do
 
       before(:each) do
-        texter = build(:user)
-        User.stub(:find_sender).and_return(texter)
+        @texter = build(:user)
+        User.stub(:find_sender).and_return(@texter)
         @params = twilio_params
         Setting.active.update_attribute(:code_scheme, 0)
       end
@@ -55,18 +55,32 @@ describe TextData do
         end
         it{ should be_valid }
         its(:text_success){ should == false }
-        its(:outgoing_sms_body){ should_not be_nil }
+        its(:outgoing_sms_body){ should == "We do not have a parking code for that input.  Use YYYY-MM-DD with the date you'd like a code" }
       end
 
       context "date available" do
         before(:each) do
           date = "2014-04-16"
-          create(:parking_code, codedate: Date.parse(date))
+          @pc = create(:parking_code, codedate: Date.parse(date))
           @params = twilio_params(:Body => date)
         end
         it{ should be_valid }
-        its(:text_success){ binding.pry; subject.should == true }
-        its(:outgoing_sms_body){ should_not be_nil }
+        its(:text_success){ should == true }
+        its(:outgoing_sms_body){ should ==  "The parking code for 2014-04-16 is #{@pc.code}. You have 99 free codes left."}
+      end
+
+      context "date available, over limit" do
+        before(:each) do
+          @texter.organization = create(:tenant)
+          @texter.save
+          create(:text_datum, user: @texter)
+          date = "2014-04-16"
+          @pc = create(:parking_code, codedate: Date.parse(date))
+          @params = twilio_params(:Body => date)
+        end
+        it{ should be_valid }
+        its(:text_success){ should == true } 
+        its(:outgoing_sms_body){ should ==  "The parking code for 2014-04-16 is #{@pc.code}. You're 1 over your limit."}
       end
 
 

@@ -67,6 +67,7 @@ group :test do
   gem "capybara"
   gem "factory_girl_rails", "4.1.0"
   gem "forgery"
+  gem 'database_cleaner'
 end
 
 gem "twilio-ruby"

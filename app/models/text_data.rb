@@ -76,9 +76,9 @@ class TextData < ActiveRecord::Base
         if user
           self.text_success = true
           self.outgoing_sms_body = if user.under_limit?
-            "The parking code for #{parse_date_from_body} is #{pc}. You have #{user.texts_left} free codes left."
+            "The parking code for #{parse_date_from_body} is #{pc}. You have #{user.texts_left-1} free codes left."
           else
-            "The parking code for #{parse_date_from_body} is #{pc}. You're #{user.texts_left.abs} over your limit."
+            "The parking code for #{parse_date_from_body} is #{pc}. You're #{user.texts_left.abs+1} over your limit."
           end
         else
           self.text_success = false
