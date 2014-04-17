@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416195039) do
+ActiveRecord::Schema.define(version: 20140417185202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140416195039) do
     t.date     "codedate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "redeemed",   default: false, null: false
   end
 
   create_table "relationships", force: true do |t|

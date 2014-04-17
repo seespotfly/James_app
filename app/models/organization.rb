@@ -13,12 +13,12 @@ class Organization < ActiveRecord::Base
     TextData.company_count(self)
   end
 
-  def texts_left
-    relationship.text_count - self.text_count
+  def texts_left(parking_codes = [])
+    relationship.text_count - self.text_count - parking_codes.size
   end
 
-  def under_limit?
-    relationship.text_count > self.text_count
+  def under_limit?(parking_codes = [])
+    texts_left(parking_codes) > 0
   end
 
   def to_s

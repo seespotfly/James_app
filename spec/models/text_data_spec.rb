@@ -92,8 +92,8 @@ describe TextData do
     context "population from Twilio" do
 
       before(:each) do
-        texter = build(:user)
-        User.stub(:find_sender).and_return(texter)
+        @texter = build(:user)
+        User.stub(:find_sender).and_return(@texter)
         @params = twilio_params
         Setting.active.update_attribute(:code_scheme, 1)
       end
@@ -110,8 +110,57 @@ describe TextData do
       context "empty input" do
         it{ should be_valid }
         its(:text_success){ should == false }
+        its(:outgoing_sms_body){ should == "Please request a number of codes between 1-5.  Send more texts for more codes." }
       end
 
+      context "single code, under limit" do
+        before(:each) do
+          @pcs = [create(:parking_code)]
+          @params = twilio_params(:Body => "1")
+        end
+        it{ should be_valid }
+        its(:text_success){ should == true }
+        its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You have 99 free codes left."}
+        it "should redeem on successful text egress" do
+          subject.save
+          @pcs.collect{ |pc| pc.reload }.reject{ |pc| pc.redeemed? }.should be_empty
+        end
+      end
+
+      context "multiple codes, under limit" do
+        before(:each) do
+          @pcs = [create(:parking_code), create(:parking_code)]
+          @params = twilio_params(:Body => "2")
+        end
+        it{ should be_valid }
+        its(:text_success){ should == true }
+        its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You have 98 free codes left."}
+      end
+
+      context "single code, over limit" do
+        before(:each) do
+          @pc = [create(:parking_code)]
+          @params = twilio_params(:Body => "1")
+          @texter.organization = create(:tenant)
+          @texter.save
+          create(:text_datum, user: @texter)
+        end
+        it{ should be_valid }
+        its(:text_success){ should == true }
+        its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You're 1 over your limit."}
+      end
+
+      context "multiple codes, over limit" do
+        before(:each) do
+          @pcs = [create(:parking_code), create(:parking_code)]
+          @params = twilio_params(:Body => "2")
+          @texter.organization = create(:tenant)
+          @texter.save
+        end
+        it{ should be_valid }
+        its(:text_success){ should == true }
+        its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You're 1 over your limit."}
+      end
     end
 
   end

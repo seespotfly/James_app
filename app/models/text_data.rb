@@ -37,6 +37,16 @@ class TextData < ActiveRecord::Base
     end
   end
 
+  def parse_qty_from_body
+    string = self.text_body
+    if !string.blank?
+      num_requested = string.to_i
+
+    else
+      1 # 0 or nil may be a better default
+    end
+  end
+
   def self.company_count(company)
     company.text_data.where(text_success:true).
       where(["extract(month from created_at) = ?",Date.today.month]).
@@ -76,9 +86,9 @@ class TextData < ActiveRecord::Base
         if user
           self.text_success = true
           self.outgoing_sms_body = if user.under_limit?
-            "The parking code for #{parse_date_from_body} is #{pc}. You have #{user.texts_left-1} free codes left."
+            "The parking code for #{parse_date_from_body} is #{pc}. You have #{user.texts_left([pc])} free codes left."
           else
-            "The parking code for #{parse_date_from_body} is #{pc}. You're #{user.texts_left.abs+1} over your limit."
+            "The parking code for #{parse_date_from_body} is #{pc}. You're #{user.texts_left([pc]).abs} over your limit."
           end
         else
           self.text_success = false
@@ -86,7 +96,23 @@ class TextData < ActiveRecord::Base
         end
       end
     else
-      self.text_success = false
+      p_codes = ParkingCode.codes_for(parse_qty_from_body)
+      if p_codes.nil? || p_codes.empty?
+        self.text_success = false
+        self.outgoing_sms_body = "Please request a number of codes between 1-5.  Send more texts for more codes."
+        self.text_success = false
+      elsif p_codes.any?
+        self.text_success = true
+        p_codes.map{ |pc| 
+          pc.update_attribute(:redeemed, true) 
+        }
+        self.outgoing_sms_body = if user.under_limit?
+          [ParkingCode.codes_to_txt(p_codes), "You have #{user.texts_left(p_codes)} free codes left."].join(". ")
+        else
+          [ParkingCode.codes_to_txt(p_codes), "You're #{user.texts_left(p_codes).abs} over your limit."].join(". ")
+        end
+      end
+
     end
     self
   end
