@@ -7,6 +7,8 @@ class ParkingCode < ActiveRecord::Base
   
   def unique_codedate_per_scheme
     if Setting.date_scheme?
+      # [FIXME] reinstate this, otherwise multiple codes for one date OK, 
+      # too human-error prone
     else
       true
     end

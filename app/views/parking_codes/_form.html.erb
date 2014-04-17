@@ -19,10 +19,12 @@
     <%= f.label :code %><br>
     <%= f.number_field :code %>
   </div>
+  <% if Setting.date_scheme? %>
   <div class="field">
     <%= f.label :codedate %><br>
     <%= f.date_select :codedate %>
   </div>
+  <% end %>
       <p>&nbsp;</p>
       <div class="actions">
         <%= f.submit class: "btn btn-primary btn-md"  %>

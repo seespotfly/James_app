@@ -1,12 +1,6 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy]
 
-  # GET /settings
-  # GET /settings.json
-  def index
-    @settings = Setting.all
-  end
-
   # GET /settings/1
   # GET /settings/1.json
   def show
@@ -42,7 +36,7 @@ class SettingsController < ApplicationController
   def update
     respond_to do |format|
       if @setting.update(setting_params)
-        format.html { redirect_to @setting, notice: 'Setting was successfully updated.' }
+        format.html { redirect_to settings_path, notice: 'Settings were successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,7 +58,7 @@ class SettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_setting
-      @setting = Setting.first
+      @setting = Setting.active
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

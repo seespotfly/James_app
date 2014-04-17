@@ -2,9 +2,19 @@
   <td>
     <%= parking_code.code %>
   </td>
+  <% if Setting.date_scheme? %>
   <td>
     <%= parking_code.codedate %>
   </td>
+  <% else %>
+  <td>
+    <% if parking_code.redeemed %>
+      <span class="icon-check"></span>
+    <% else %>
+      <span class="icon-exclamation"></span>
+    <% end %>
+  </td>
+  <% end %>
   <td>
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-barcode"></i></button>
