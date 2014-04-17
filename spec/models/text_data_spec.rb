@@ -139,7 +139,7 @@ describe TextData do
 
       context "single code, over limit" do
         before(:each) do
-          @pc = [create(:parking_code)]
+          @pcs= [create(:parking_code)]
           @params = twilio_params(:Body => "1")
           @texter.organization = create(:tenant)
           @texter.save
@@ -148,6 +148,10 @@ describe TextData do
         it{ should be_valid }
         its(:text_success){ should == true }
         its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You're 1 over your limit."}
+        it "should redeem on successful text egress" do
+          subject.save
+          @pcs.collect{ |pc| pc.reload }.reject{ |pc| pc.redeemed? }.should be_empty
+        end
       end
 
       context "multiple codes, over limit" do
@@ -160,6 +164,10 @@ describe TextData do
         it{ should be_valid }
         its(:text_success){ should == true }
         its(:outgoing_sms_body){ should ==  "#{ParkingCode.codes_to_txt(@pcs)}. You're 1 over your limit."}
+        it "should redeem on successful text egress" do
+          subject.save
+          @pcs.collect{ |pc| pc.reload }.reject{ |pc| pc.redeemed? }.should be_empty
+        end
       end
     end
 

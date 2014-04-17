@@ -106,7 +106,7 @@ class TextData < ActiveRecord::Base
         p_codes.map{ |pc| 
           pc.update_attribute(:redeemed, true) 
         }
-        self.outgoing_sms_body = if user.under_limit?
+        self.outgoing_sms_body = if user.under_limit?(p_codes)
           [ParkingCode.codes_to_txt(p_codes), "You have #{user.texts_left(p_codes)} free codes left."].join(". ")
         else
           [ParkingCode.codes_to_txt(p_codes), "You're #{user.texts_left(p_codes).abs} over your limit."].join(". ")
