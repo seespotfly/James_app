@@ -1,27 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-
-    sender = params[:From]
-    user = User.find_sender(sender[1..11])
-
-    if user.nil?
-      render :text => sms_message("You are not registered to request parking codes.")
-
-      #Successfull Text
-    else
-      if user.under_limit?
-        text_data = TextData.from_twilio(params)
-        text_data.user = user
-        text_data.company_id = user.company_id
-        text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You have #{user.texts_left-1} free codes left.")
-      else
-        text_data = TextData.from_twilio(params)
-        text_data.user = user
-        text_data.save
-        render :text => sms_message("The parking code for #{text_data.text_date} is #{text_data.codedate}. You're #{user.texts_left.abs+1} over your limit.")
-
-      end
+      text_data = TextData.from_twilio(params)
+      text_data.save
+      render :text => sms_message(text_data.outgoing_sms_body)
     end
   end
 

@@ -46,7 +46,7 @@ describe TextData do
       context "empty input" do
         it{ should be_valid }
         its(:text_success){ should == false }
-        its(:outgoing_sms_body){ should_not be_nil }
+        its(:outgoing_sms_body){ should == "We do not have a parking code for that input.  Use YYYY-MM-DD with the date you'd like a code" }
       end
 
       context "date in past or not available" do
@@ -82,7 +82,6 @@ describe TextData do
         its(:text_success){ should == true } 
         its(:outgoing_sms_body){ should ==  "The parking code for 2014-04-16 is #{@pc.code}. You're 1 over your limit."}
       end
-
 
     end
 
