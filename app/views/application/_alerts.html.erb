@@ -1,0 +1,17 @@
+<% if !alert.blank? %>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= alert %>
+  </div>
+</div>
+<% end %>
+
+<% if !notice.blank? %>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= notice %>
+  </div>
+</div>
+<% end %>

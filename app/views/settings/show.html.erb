@@ -1,0 +1,15 @@
+<div id="supporttab" class="panel panel-default tab-pane fade active in">
+  <div class="panel-body">
+    <h1>Settings</h1>
+    <p>
+    <strong>Code scheme:</strong>
+    <% if @setting.date_scheme? %>
+      One code per date
+    <% else %>
+      Single use codes
+    <% end %>
+    </p>
+
+    <%= link_to 'Edit', edit_settings_path %>
+  </div>
+</div>

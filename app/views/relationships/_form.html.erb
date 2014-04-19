@@ -1,0 +1,30 @@
+<%= form_for(@relationship, html: {role: "form"}) do |f| %>
+  <div class="form-group">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  <% if @relationship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relationship.errors.count, "error") %> prohibited this relationship from being saved:</h2>
+
+      <ul>
+      <% @relationship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :text_count, "Monthly code limit" %><br>
+    <%= f.number_field :text_count %>
+  </div>
+      <p>&nbsp;</p>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary btn-md"  %>
+      </div>
+</div></div></div>
+<% end %>

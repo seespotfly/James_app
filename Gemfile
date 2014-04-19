@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -26,7 +26,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem "rails_12factor"
+group :production, :development do
+  gem "rails_12factor"
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -48,6 +50,8 @@ end
 gem "pg"
 gem "unicorn"
 gem "foreman"
+gem 'kaminari'
+
 group :development, :test do
   gem "rspec-rails", "2.13.0"
   gem "pry"
@@ -63,6 +67,7 @@ group :test do
   gem "capybara"
   gem "factory_girl_rails", "4.1.0"
   gem "forgery"
+  gem 'database_cleaner'
 end
 
 gem "twilio-ruby"

@@ -1,36 +1,27 @@
-<h1>Listing users</h1>
+<div id="userstab" class="panel panel-default tab-pane fade in active">
+  <div class="panel-body">
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Phone Number
+          </th>
+          <th>
+            Organization
+          </th>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render :partial => "user", :collection => @users %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone number</th>
-      <th>Company</th>
-      <th>Relationship</th>
-      <th>Text count</th>
-      <th>Code Limit</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.phone_number %></td>
-        <td><%= user.company %></td>
-        <td><%= user.relationship %></td>
-        <td><%= user.text_count %></td>
-        <td><%= user.code_limit[user.relationship] %></td>        
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+      </tbody>
+    </table>
+    <%= paginate @users %>
+  </div>
+</div>

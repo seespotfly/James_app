@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<div id="supporttab" class="panel panel-default tab-pane fade active in">
+  <div class="panel-body">
+    <h1>Parking Code</h1>
 <p>
   <strong>Code:</strong>
   <%= @parking_code.code %>
@@ -10,5 +11,7 @@
   <%= @parking_code.codedate %>
 </p>
 
-<%= link_to 'Edit', edit_parking_code_path(@parking_code) %> |
-<%= link_to 'Back', parking_codes_path %>
+  <%= link_to 'Edit', edit_parking_code_path(@parking_code) %> 
+  </div>
+</div>
+

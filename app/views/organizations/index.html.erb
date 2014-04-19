@@ -1,0 +1,25 @@
+<div id="userstab" class="panel panel-default tab-pane fade in active">
+  <div class="panel-body">
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Relationship
+          </th>
+          <th>
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render :partial => "organization", :collection => @organizations %>
+
+      </tbody>
+    </table>
+    <%= paginate @organizations %>
+  </div>
+</div>
+

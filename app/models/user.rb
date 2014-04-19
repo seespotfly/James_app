@@ -8,40 +8,24 @@ class User < ActiveRecord::Base
   validates_length_of :phone_number, :maximum => 11
   validates_length_of :phone_number, :minimum => 11,
     :message => "must start with 1 followed by area code then number"
-  validates :relationship, presence: true
+  validates :company_id, presence: true
+
+  belongs_to :organization, foreign_key: :company_id
 
   has_many :text_data, class_name: "TextData"
 
-#Validates that an incomming phone number is a user in the system
+  #Validates that an incomming phone number is a user in the system
   def self.find_sender(phone_number)
     User.where(phone_number: phone_number).first
   end
 
-#count successful texts
-  def text_count
-    text_data.where(text_success:true).
-      where(["extract(month from created_at) = ?",Date.today.month]).
-      where(["extract(year from created_at) = ?",Date.today.year]).count
+  def company_name
+    organization.name
   end
 
-#set code limits by relationships: desk, office, suite, partner, packard
-  def code_limit; {
-    'Desk' => 1,
-    'Office' => 5,
-    'Suite' => 18,
-    'Partner' => 22,
-    'Packard Place' => 100
-    }
-  end
+  delegate :under_limit?, to: :organization
+  delegate :texts_left, to: :organization
 
-#Defining a text limit and establishing its relationship to the code limit variable
-  def text_limit
-    code_limit[relationship]
-  end
-
-  def under_code_limit?
-    text_limit > text_count
-  end
 
 end
 

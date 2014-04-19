@@ -1,32 +1,23 @@
-<h1>Listing text_data</h1>
+<div id="orderstab" class="panel panel-default tab-pane fade in active">
+  <div class="panel-body">
+    <h1>Text Messages</h1>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>Body</th>
+          <th>Success</th>
+          <th>User</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+      <tbody>
 
-<table>
-  <thead>
-    <tr>
-      <th>Account ID</th>
-      <th>To</th>
-      <th>From</th>
-      <th>Body</th>
-      <th>User ID</th>
-      <th>User Name</th>
+      <%= render :partial => "text_datum", :collection => @text_data %>
 
-
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @text_data.each do |text_data| %>
-      <tr>
-        <td><%= text_data.account_sid %></td>
-        <td><%= text_data.text_to %></td>
-        <td><%= text_data.text_from %></td>
-        <td><%= text_data.text_body %></td>
-        <td><%= text_data.user_id %></td>
-        <td><%= text_data.user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      </tbody>
+    </table>
+    <%= paginate @text_data %>
+  </div>
+</div>
 

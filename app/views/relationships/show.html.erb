@@ -1,0 +1,19 @@
+<div id="supporttab" class="panel panel-default tab-pane fade active in">
+  <div class="panel-body">
+
+<h1>Relationship profile</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @relationship.name %>
+</p>
+
+<p>
+  <strong>Text count:</strong>
+  <%= @relationship.text_count %>
+</p>
+
+<%= link_to 'Edit', edit_relationship_path(@relationship) %>
+
+</div>
+</div>

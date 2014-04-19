@@ -1,0 +1,14 @@
+<tr>
+  <td><%= text_datum.text_from %></td>
+  <td><%= text_datum.text_body %></td>
+  <td>
+    <% if text_datum.text_success %>
+      <span class="icon-check"></span>
+    <% else %>
+      <span class="icon-exclamation"></span>
+    <% end %>
+  </td>
+  <td><%= text_datum.user_name %></td>
+  <td><%= text_datum.organization_name %></td>
+</tr>
+

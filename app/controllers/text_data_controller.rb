@@ -4,7 +4,7 @@ class TextDataController < ApplicationController
   # GET /parking_codes
   # GET /parking_codes.json
   def index
-    @text_data = TextData.all
+    @text_data = TextData.includes(:user, :organization).order("created_at desc").page params[:page]
   end
 
   # GET /parking_codes/1
