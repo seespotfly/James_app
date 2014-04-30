@@ -7,9 +7,15 @@
           <th>
             Code
           </th>
-          <th>
+          <% if Setting.date_scheme? %>
+            <th>
             Date
           </th>
+        <% else %>
+            <th>
+            Redeemed
+          </th>
+        <% end %>
           <th>
             &nbsp;
           </th>
@@ -22,8 +28,8 @@
 
       <%= render :partial => "parking_code", :collection => @parking_codes %>
 
-  </tbody>
-</table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
