@@ -1,9 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-      text_data = TextData.from_twilio(params)
-      text_data.save
-      render :text => sms_message(text_data.outgoing_sms_body)
-    end
+    text_data = TextData.from_twilio(params)
+    text_data.save
+    render :text => sms_message(text_data.outgoing_sms_body)
   end
 
   private
