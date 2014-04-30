@@ -15,7 +15,7 @@ class ParkingCode < ActiveRecord::Base
   end
 
   def self.available
-    where(redeemed: false)
+    where(redeemed: false).where(codedate: nil)
   end
 
   def self.code_for(date)
